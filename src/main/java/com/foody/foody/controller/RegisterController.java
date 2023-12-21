@@ -2,14 +2,17 @@ package com.foody.foody.controller;
 
 import com.foody.foody.bean.User;
 import com.foody.foody.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 public class RegisterController {
 
     private final UserRepository userDao;
@@ -20,7 +23,6 @@ public class RegisterController {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     @GetMapping("/register")
     public ModelAndView registerGet() {
@@ -57,5 +59,19 @@ public class RegisterController {
     @GetMapping("/login")
     public ModelAndView loginGet () {
         return new ModelAndView("/login");
+    }
+
+    @PostMapping("/login")
+    public ModelAndView loginPost() {
+
+        return new ModelAndView("redirect:/profile");
+    }
+
+    @GetMapping("/profile")
+    public ModelAndView profileGet(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getEmail());
+        model.addAttribute("user", user);
+        return new ModelAndView("/profile");
     }
 }
