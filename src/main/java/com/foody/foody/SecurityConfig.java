@@ -47,7 +47,7 @@ public class SecurityConfig {
 
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(  "/font/**", "/viewed/**", "/static/**", "/bg.jpeg" ,"/").permitAll()
+                .requestMatchers(  "/font/**", "/viewed/**", "/static/**", "/bg.jpeg" ,"/**.jpeg", "/").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -65,7 +65,7 @@ public class SecurityConfig {
 
 
 
-                .requestMatchers("/login", "/static/**","/ads/**", "/register", "/team", "/css/**","/error","/images/**", "/JS/register.js", "font/**", "/bg.jpeg")
+                .requestMatchers("/login", "/static/**", "/register", "/team", "/css/**","/error","/images/**", "/JS/register.js", "font/**", "/bg.jpeg")
 
                 .permitAll()
                 .and()
