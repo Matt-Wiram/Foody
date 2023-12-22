@@ -8,8 +8,9 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column (nullable = false, length = 100, unique = false)
-    private long userId;
+    @OneToOne
+    private User user;
+
     @Column (nullable = true, length = 100, unique = false)
     private long idd;
     @Column (nullable = true, length = 100, unique = false)
@@ -17,16 +18,16 @@ public class Food {
     @Column (nullable = true, length = 100, unique = false)
     private String title;
 
-    public Food(long id, long idd, String description, String title) {
+    public Food(long id, User user, long idd, String description, String title) {
         this.id = id;
+        this.user = user;
         this.idd = idd;
         this.description = description;
         this.title = title;
     }
 
-    public Food(long id, long userId, long idd, String description, String title) {
-        this.id = id;
-        this.userId = userId;
+    public Food(User user, long idd, String description, String title) {
+        this.user = user;
         this.idd = idd;
         this.description = description;
         this.title = title;
@@ -43,12 +44,12 @@ public class Food {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getIdd() {

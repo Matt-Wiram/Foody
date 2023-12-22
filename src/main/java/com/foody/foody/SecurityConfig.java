@@ -65,7 +65,7 @@ public class SecurityConfig {
 
 
 
-                .requestMatchers("/login", "/static/**", "/register", "/team", "/css/**","/error","/images/**", "/JS/register.js", "font/**", "/bg.jpeg")
+                .requestMatchers("/login", "/static/**","/ads/**", "/register", "/team", "/css/**","/error","/images/**", "/JS/register.js", "font/**", "/bg.jpeg")
 
                 .permitAll()
                 .and()
