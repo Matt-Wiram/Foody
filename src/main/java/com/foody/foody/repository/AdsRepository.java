@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface AdsRepository extends JpaRepository<Food, Long> {
     List<Food> getFoodByUser (User user);
+
+    Food getFoodByTitle (String title);
 }

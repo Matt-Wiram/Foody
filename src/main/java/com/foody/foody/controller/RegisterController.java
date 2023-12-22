@@ -107,4 +107,11 @@ public class RegisterController {
         model.addAttribute("ads", food);
         return new ModelAndView("redirect:/profile");
     }
+
+    @PostMapping("/ads")
+    public ModelAndView adDelete (@RequestParam("title") String title) {
+        Food food = adsDao.getFoodByTitle(title);
+        adsDao.delete(food);
+        return new ModelAndView("redirect:/profile");
+    }
 }
